@@ -1,3 +1,10 @@
+# A - Multiplication 1
+
+a,b = map(int, input().split())
+print(a*b)
+
+# B - Multiplication 2
+
 n = int(input())
 line = list(map(int, input().split()))
 total = 1

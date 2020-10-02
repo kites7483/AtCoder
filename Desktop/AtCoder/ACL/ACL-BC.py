@@ -1,3 +1,18 @@
+# A - Repeat ACL
+
+n = int(input())
+print('ACL' * n)
+
+# B - Integer Preference
+
+a,b,c,d = map(int, input().split())
+if (b < c or d < a):
+  print('No')
+else:
+  print('Yes')
+
+# C - Connect Cities
+
 #Union Find
 #xの根を求める
 def find(x):
