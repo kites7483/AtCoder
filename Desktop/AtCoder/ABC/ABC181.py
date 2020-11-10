@@ -166,3 +166,32 @@ else:
     a[6] += 1
     a[9] += 1
   print(ans)
+
+'''
+collections.Counterを用いて書き直し
+'''
+
+from collections import Counter
+
+n = input()
+if len(n) == 1:
+  if n == '8':
+    print('Yes')
+  else:
+    print('No')
+  exit()
+
+elif len(n) == 2:
+  if int(n) % 8 == 0 or int(n[::-1]) % 8 == 0:
+    print('Yes')
+  else:
+    print('No')
+  exit()
+
+else:
+  numbers = Counter(n)
+  for i in range(112,1000,8):
+    if Counter(str(i)) - numbers == Counter():
+      print('Yes')
+      exit()
+  print('No')
