@@ -27,4 +27,35 @@ numbers = [1,3,4,6,8,10,12]
 index = bisect.bisect(numbers,5)
 print(index) # 3
 
+#--------------------------------------
+#scipy.sparse.csgraph
+import scipy.sparse.csgraph 
+#--------------------------------------
 
+#floyd_warshall：ワーシャルフロイド法（https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csgraph.floyd_warshall.html）
+'''
+ワーシャルフロイド法：全点対最短経路問題を解くアルゴリズム
+'''
+
+graph = [
+[0, 1, 2, 0],
+[0, 0, 0, 1],
+[2, 0, 0, 3],
+[0, 0, 0, 0]
+]
+
+dist_matrix, predecessors = scipy.sparse.csgraph.floyd_warshall(graph, directed=False, return_predecessors=True)
+print(dist_matrix)
+'''
+array([[ 0.,  1.,  2.,  2.],
+       [ 1.,  0.,  3.,  1.],
+       [ 2.,  3.,  0.,  3.],
+       [ 2.,  1.,  3.,  0.]])
+'''
+print(predecessors)
+'''
+array([[-9999,     0,     0,     1],
+       [    1, -9999,     0,     1],
+       [    2,     0, -9999,     2],
+       [    1,     3,     3, -9999]], dtype=int32)
+'''
