@@ -37,7 +37,7 @@ def find(x):
 def unite(x,y):
     x = find(x)
     y = find(y)
-    
+
     if x == y:
         return False
     else:
@@ -118,3 +118,44 @@ print(line) #[5, 5, 8, 9, 4, 4, 0, 2, 2, 0]
 
 #一つずつリストに値を加算していく場合 → 最悪の場合 O(データ数 × 区間の長さ)
 #いもす法 → O(データ数 + 区間の長さ) に削減できる！！
+
+#----------------------------
+#BFS（幅優先探索） (https://note.com/melon_ms_mtcc/n/nd2c0c7c16edb）
+#----------------------------
+
+from collections import deque
+
+def bfs(n,m,edge_list,start):#(ノード数，リンク数，辺のリスト，始点)
+    graph = [[] for _ in range(n+1)]
+
+    for edge in edge_list:
+      a, b = edge[0],edge[1]
+      graph[a].append(b)
+      graph[b].append(a)
+
+    dist = [-1] * (n+1)
+    dist[0] = 0
+    dist[start] = 0
+
+    d = deque()
+    d.append(start)
+
+    while d:
+      v = d.popleft()
+      for i in graph[v]:
+        if dist[i] != -1:
+          continue
+        dist[i] = dist[v] + 1
+        d.append(i)
+
+    return dist[1:]
+
+#イメージ（始点が（1,1）の場合）
+'''
+
+. . . . .　 　0 1 2 3 4
+. * * . .　→　1 * * 4 5       始点から各点までの
+. . * . *　→　2 3 * 5 *　　　　最短距離を算出できる！
+* . . . .　 　* 4 5 6 7
+
+'''
